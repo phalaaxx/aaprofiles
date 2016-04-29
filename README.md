@@ -43,7 +43,7 @@ Skype is the most untrustworthy binary-only (and lately Microsoft-owned) applica
 * ${HOME}/.mozilla/
 * etc.
 
-This behaviour is easily observeable by running the AppArmor profile and starting skype, AppArmor logs 
+This behaviour can be observed in AppArmor logs (audit or system logs) when the profile is active and skype is started.
 
 This may all be just to be able to uniquely identify the device it's running on, but this is not good reason enough to give it access to browser profiles, browser history and most of all - user certificates for access to various places. For this reason the AppArmor profile for Skype is as much restrictive as it is currently possible (with Skype version 4.3.0.37). Unfortunately that's not always possible, since version 2.0+ Skype now refuses to start if it does not have access to /etc/group file. However most of the things it tries to access are already filtered, including access to video devices (audio is still allowed).  
 This profile allows read and write access to ${HOME} directory only (subdirectories are not allowed) to be able to send files from there and receive sent files.
