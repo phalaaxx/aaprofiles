@@ -1,0 +1,67 @@
+# vim:syntax=apparmor
+# Author: Bozhin Zafirov <bozhin@abv.bg>
+
+#include <tunables/global>
+
+/usr/bin/skype {
+  #include <abstractions/base>
+  #include <abstractions/fonts>
+  #include <abstractions/audio>
+  #include <abstractions/kde>
+  #include <abstractions/dbus-session>
+  #include <abstractions/nameservice>
+
+  ## access to binary
+  /usr/bin/skype rmPx,
+
+  ## audio
+  /etc/asound.conf r,
+  /dev/snd/* m,
+  /run/shm/pulse-shm-** m,
+
+  ## home files
+  owner @{HOME}/ r,
+  owner @{HOME}/* rwk,
+  owner @{HOME}/.Skype*/ rw,
+  owner @{HOME}/.Skype*/shared.lck rwk,
+  owner @{HOME}/.Skype*/shared.tmp rwk,
+  owner @{HOME}/.Skype*/shared.xml rwk,
+  owner @{HOME}/.Skype*/*/** rwk,
+  owner @{HOME}/.Skype*/*/ rwk,
+  owner @{HOME}/.config/Skype*/** rwk,
+  owner @{HOME}/.config/Skype* rwk,
+
+  ## group must be readable, but why? ...
+  /etc/group r,
+
+  ## skype shared data
+  /usr/share/skype/** r,
+  /usr/share/skype/lang/skype_*.qm m,
+  /usr/share/skype/sounds/*.wav k,
+
+  ## shared libraries
+  /usr/lib/** rm,
+
+  ## /proc
+  @{PROC}/sys/kernel/ostype r,
+  @{PROC}/sys/kernel/osrelease r,
+  owner @{PROC}/*/net/arp r,
+  owner @{PROC}/*/task/ r,
+  owner @{PROC}/*/task/*/stat r,
+  # when nameservice is unavailable
+  owner @{PROC}/*/net/route r,
+  /etc/nsswitch.conf r,
+
+  ## /sys
+  /sys/devices/system/cpu/ r,
+  /sys/devices/system/cpu/*/cpufreq/scaling_cur_freq r,
+  /sys/devices/system/cpu/*/cpufreq/scaling_max_freq r,
+
+  ## /dev
+  #/dev/ r,
+  #/dev/video0 rw,
+
+  ## deny rules
+  deny /etc/hosts r,
+  deny /etc/ssl/certs/ca-certificates.crt r,
+}

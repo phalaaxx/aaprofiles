@@ -1,0 +1,55 @@
+# vim:syntax=apparmor
+# Author: Bozhin Zafirov <bozhin@abv.bg>
+
+#include <tunables/global>
+
+#/opt/viber/Viber flags=(complain) {
+/opt/viber/Viber {
+  #include <abstractions/base>
+  #include <abstractions/fonts>
+  #include <abstractions/audio>
+  #include <abstractions/user-tmp>
+  #include <abstractions/dbus-session>
+  #include <abstractions/nameservice>
+  #include <abstractions/nvidia>
+
+  ## access to binary
+  /opt/viber/Viber rmPx,
+
+  ## viber root tree
+  /opt/viber/** rm,
+
+  ## devices
+  /sys/bus/pci/devices** r,
+  /sys/devices/** r,
+
+  ## network
+  network,
+  network tcp,
+
+  ## home files
+  owner @{HOME}/ r,
+  owner @{HOME}/* rwk,
+  owner @{HOME}/.ViberPC/ rw,
+  owner @{HOME}/.ViberPC/** rwk,
+  owner @{HOME}/.Xauthority r,
+  owner @{HOME}/.config/user-dirs.dirs r,
+  owner @{HOME}/.icons/** r,
+
+  ## /proc
+  owner @{PROC}/*/status r,
+  owner @{PROC}/*/fd/ r,
+
+  ## nvidia
+  /usr/share/nvidia/** r,
+
+  ## other
+  /etc/issue r,
+  /etc/udev/udev.conf r,
+  /usr/bin/lsb_release ux,
+  /tmp** rwm,
+  /usr/share/icons/** r,
+
+  ## deny rules
+  deny /dev/tty r,
+}
