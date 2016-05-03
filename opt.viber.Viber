@@ -48,6 +48,7 @@
   /etc/issue r,
   /etc/udev/udev.conf r,
   /usr/bin/lsb_release ux,
+  /usr/bin/xdg-open ux,
   /tmp** rwm,
   /usr/share/icons/** r,
 
