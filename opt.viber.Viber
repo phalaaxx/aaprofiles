@@ -35,6 +35,7 @@
   owner @{HOME}/.Xauthority r,
   owner @{HOME}/.config/user-dirs.dirs r,
   owner @{HOME}/.icons/** r,
+  owner @{HOME}/Documents/ViberDownloads/* rw,
 
   ## /proc
   owner @{PROC}/*/status r,
