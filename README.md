@@ -51,3 +51,13 @@ It also supports multiple Skype instances running different accounts with Skype 
 ```sh
 skype --dbpath=~/.Skype2
 ```
+
+usr.bin.skypeforlinux
+---
+
+Note: skypeforlinux alpha does not seem to suffer from that much curiosity as the old skype client, anyway probably not a bad idea to put some constraints to it too.
+
+opt.telegram.Telegram
+---
+
+Telegram profile expects the binary executable to be placed in /opt/telegram/Telegram, which makes it necessary to manually update when a new version is available.

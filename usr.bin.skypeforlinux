@@ -1,0 +1,67 @@
+# vim:syntax=apparmor
+# Author: Bozhin Zafirov <bozhin@abv.bg>
+
+#include <tunables/global>
+
+/usr/bin/skypeforlinux {
+  #include <abstractions/base>
+  #include <abstractions/fonts>
+  #include <abstractions/audio>
+  #include <abstractions/kde>
+  #include <abstractions/dbus-session>
+  #include <abstractions/nameservice>
+
+  # access to binary
+  /usr/bin/skypeforlinux rmPx,
+
+  # binutils
+  /bin/readlink ux,
+  /bin/mkdir ux,
+  /usr/bin/dirname ux,
+  /usr/bin/nohup ux,
+
+  # audio
+  /etc/asound.conf r,
+  /dev/snd/* m,
+  /run/shm/pulse-shm-** m,
+
+  @{HOME}/.config/skypeforlinux/** rwk,
+
+  # home files
+  @{HOME}/ r,
+  @{HOME}/* rwk,
+
+  # group :@
+  /etc/group r,
+
+  # skype shared data
+  /usr/share/skype/** r,
+  /usr/share/skype/lang/skype_*.qm m,
+  /usr/share/skype/sounds/*.wav k,
+
+  # shared libraries
+  /usr/lib/** rm,
+
+  # /proc
+  @{PROC}/sys/kernel/ostype r,
+  @{PROC}/sys/kernel/osrelease r,
+  @{PROC}/*/net/arp r,
+  @{PROC}/*/task/ r,
+  @{PROC}/*/task/*/stat r,
+  # when nameservice is unavailable
+  @{PROC}/*/net/route r,
+  /etc/nsswitch.conf r,
+
+  # /sys
+  /sys/devices/system/cpu/ r,
+  /sys/devices/system/cpu/*/cpufreq/scaling_cur_freq r,
+  /sys/devices/system/cpu/*/cpufreq/scaling_max_freq r,
+
+  # /dev
+  /dev/ r,
+  /dev/video0 rw,
+
+  # deny rules
+  deny /etc/hosts r,
+  deny /etc/ssl/certs/ca-certificates.crt r,
+}
