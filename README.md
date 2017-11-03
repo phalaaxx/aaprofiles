@@ -57,6 +57,12 @@ usr.bin.skypeforlinux
 
 Note: skypeforlinux alpha does not seem to suffer from that much curiosity as the old skype client, anyway probably not a bad idea to put some constraints to it too.
 
+usr.share.skypeforlinux.skypeforlinux
+---
+
+The new skype version for linux (8.9.0.1 at time of writing) comes with some changes, this profile confines this new skype binary.
+
+
 opt.telegram.Telegram
 ---
 

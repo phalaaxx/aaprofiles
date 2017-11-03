@@ -1,0 +1,59 @@
+# vim:syntax=apparmor
+# Author: Bozhin Zafirov <bozhin@abv.bg>
+
+#include <tunables/global>
+
+#/usr/share/skypeforlinux/skypeforlinux flags=(complain) {
+/usr/share/skypeforlinux/skypeforlinux {
+  #include <abstractions/base>
+  #include <abstractions/fonts>
+  #include <abstractions/audio>
+  #include <abstractions/video>
+  #include <abstractions/kde>
+  #include <abstractions/ssl_certs>
+  #include <abstractions/X>
+  #include <abstractions/user-download>
+  #include <abstractions/dbus-session>
+  #include <abstractions/nameservice>
+
+  # access to binary
+  /usr/share/skypeforlinux/skypeforlinux rix,
+  /usr/bin/locale ux,
+  /usr/bin/xdg-open ux,
+
+  /usr/share/skypeforlinux** rwm,
+  /usr/share/mime/mime.cache rm,
+
+  /sys/devices/system/cpu** r,
+  /sys/bus/pci/devices** r,
+  /sys/devices** r,
+
+  /etc/udev/udev.conf r,
+
+  /dev/ r,
+  /dev/dri/ r,
+  /dev/video* rw,
+  /dev/snd/* rwm,
+  owner /dev/shm/** rwm,
+
+  @{PROC} r,
+  @{PROC}/version r,
+  @{PROC}/sys/kernel/yama/ptrace_scope r,
+  @{PROC}/sys/kernel/ostype r,
+  @{PROC}/sys/kernel/osrelease r,
+  owner @{PROC}/*/fd/ r,
+  owner @{PROC}/*/status r,
+  owner @{PROC}/*/task** r,
+  owner @{PROC}/*/oom_score_adj rw,
+  owner @{PROC}/*/stat r,
+
+  /usr/share/themes** r,
+  /usr/share/fonts** rm,
+
+  owner @{HOME}/.config/skypeforlinux** rwkm,
+  owner @{HOME}/.gtkrc-2.0 r,
+  owner @{HOME}/.icons** r,
+  owner @{HOME}/.config/autostart/skypeforlinux.desktop rw,
+  owner @{HOME}/.pki/nssdb** rwk,
+  owner @{HOME}/.local/share/mime/mime.cache rm,
+}
