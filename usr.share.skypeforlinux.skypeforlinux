@@ -32,7 +32,7 @@
 
   /dev/ r,
   /dev/dri/ r,
-  /dev/video* rw,
+  /dev/video* rwm,
   /dev/snd/* rwm,
   owner /dev/shm/** rwm,
 
