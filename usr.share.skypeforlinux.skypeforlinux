@@ -34,7 +34,7 @@
   /dev/dri/ r,
   /dev/video* rwm,
   /dev/snd/* rwm,
-  owner /dev/shm/** rwm,
+  owner /dev/shm/** rwml,
 
   @{PROC} r,
   @{PROC}/version r,
