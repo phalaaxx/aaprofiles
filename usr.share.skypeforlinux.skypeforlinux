@@ -34,7 +34,7 @@
   /dev/dri/ r,
   /dev/video* rwm,
   /dev/snd/* rwm,
-  owner /dev/shm/** rwm,
+  owner /dev/shm/** rwml,
 
   @{PROC} r,
   @{PROC}/version r,
@@ -49,8 +49,10 @@
 
   /usr/share/themes** r,
   /usr/share/fonts** rm,
+  /usr/share/locale-langpack/** rm,
 
   owner @{HOME}/.config/skypeforlinux** rwkm,
+  owner @{HOME}/.config/gtkrc-2.0 r,
   owner @{HOME}/.gtkrc-2.0 r,
   owner @{HOME}/.icons** r,
   owner @{HOME}/.config/autostart/skypeforlinux.desktop rw,
