@@ -55,7 +55,7 @@ skype --dbpath=~/.Skype2
 usr.share.skypeforlinux.skypeforlinux
 ---
 
-Note: skypeforlinux now curiously reads contents in /dev/disk/by-id and if it is unable to do so it just does not start properly. This could be considered harmful since it contains information about disks attached to the system with their serial numbers. I suppose this is done for the purpose of uniqely identifying a computer running skype, but then that's the real problem: I don't think Microsoft deserves to uniqely identify my computer(s) in any way. I don't run Windows because I don't trust them and I suppose soon I'll have to stop using skypeforlinux as well for the very same reasons - since skype is getting harmful (again).
+Note: skypeforlinux now curiously reads contents in /dev/disk/by-id and if it is unable to do so it just does not start properly. This could be considered harmful since it contains information about disks attached to the system with their serial numbers. I suppose this is done for the purpose of uniquely identifying a computer running skype, but then that's the real problem: I don't think Microsoft deserves to uniquely identify my computer(s) in any way. I don't run Windows because I don't trust them and I suppose soon I'll have to stop using skypeforlinux as well for the very same reasons - since skype is getting harmful (again).
 
 
 opt.telegram.Telegram
