@@ -18,10 +18,17 @@
 
   ## viber root tree
   /opt/viber/** rm,
+  /opt/viber/libexec/** ix,
+  /opt/viber/libexec/locales/ rwk,
+  /opt/viber/libexec/locales/** r,
 
   ## devices
   /sys/bus/pci/devices** r,
   /sys/devices/** r,
+  /dev/dri/ r,
+  /dev/dri/** r,
+  /dev/dri/render** w,
+  /dev/disk/by-label/ r,
 
   ## network
   network,
@@ -36,13 +43,26 @@
   owner @{HOME}/.config/user-dirs.dirs r,
   owner @{HOME}/.icons/** r,
   owner @{HOME}/Documents/ViberDownloads/* rw,
+  owner @{HOME}/.config/** r,
+  owner @{HOME}/.cache/mesa_shader_cache/index rwk,
+  owner @{HOME}/Downloads/Viber-History-** rwk,
+  deny  @{HOME}/.mozilla/firefox/ r,
+
 
   ## /proc
+        @{PROC}/ r,
   owner @{PROC}/*/status r,
+  owner @{PROC}/*/stat r,
   owner @{PROC}/*/fd/ r,
+  owner @{PROC}/*/cmdline r,
+  owner @{PROC}/*/setgroups rw,
+  owner @{PROC}/*/mounts r,
+  owner @{PROC}/*/mountinfo r,
 
-  ## nvidia
-  /usr/share/nvidia/** r,
+  owner /run/user/*/dconf/user rw,
+
+  ## shared libraries and files
+  /usr/share/** r,
 
   ## other
   /etc/issue r,
@@ -51,6 +71,11 @@
   /usr/bin/xdg-open ux,
   /tmp** rwm,
   /usr/share/icons/** r,
+  /usr/share/X11/xkb/** r,
+  /usr/share/glib-2.0/schemas/gschemas.compiled r,
+
+  /etc/glvnd/egl_vendor.d/ r,
+  /etc/glvnd/egl_vendor.d/** r,
 
   ## deny rules
   deny /dev/tty r,
